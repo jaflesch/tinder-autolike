@@ -4,7 +4,7 @@ function checkTinder() {
 
 function trickTinder() {
 	// Click, click, click the like button
-	document.getElementsByClassName("recsGamepad__button--like")[0].click();
+	document.getElementsByClassName("recsGamepad__button")[3].click();
 
 	// If reached max likes per day then show modal and get it's content...
 	// Check if there is any subscription button...

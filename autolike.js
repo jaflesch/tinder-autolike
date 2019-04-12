@@ -4,7 +4,8 @@ function checkTinder() {
 
 function trickTinder() {
 	// Click, click, click the like button
-	document.getElementsByClassName("recsGamepad__button--like")[0].click();
+	var className = 'recsGamepad__button End(15px)';
+	document.getElementsByClassName(className)[0].click();
 
 	// If reached max likes per day then show modal and get it's content...
 	// Check if there is any subscription button...
@@ -16,6 +17,7 @@ function trickTinder() {
 		// Minutes are worth 60 seconds. Hours are worth 60 minutes. 1 second = 1kmilliseconds.
 		// Genius... rocket science...
 		var seconds = (+a[0]) * 60 * 60 + (+a[1]) * 60 + (+a[2])
+		
 		return seconds * 1000;
 	}
 }

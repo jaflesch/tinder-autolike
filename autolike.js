@@ -1,22 +1,27 @@
 
 function hasBlacklistKeywords(bio) {
-		var blacklist = [
+		var blacklist = [			
 			'ladyboy',
 			'lady boy',
 			'not a lady',
+			'not lady',
+			'not a girl',
+			'not girl',
+			'trans',
+			'shemale',
 			'chubby',
 			//' lb ',
-			'not lady'
 		];
-
+	
 		blacklist.forEach(function(item){
-				if(bio.indexOf(item) !== -1) {
+				if(bio.toLowerCase().indexOf(item) !== -1) {
 					console.log('skipping profile, matched blacklist keyword ' + item);
 					return true;
-				} else {
-					return false;
-				}
+				} 
 		});
+
+		return false;
+
 }
 
 function hasValidProfile() {

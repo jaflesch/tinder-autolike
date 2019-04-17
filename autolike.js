@@ -1,6 +1,6 @@
 
 function hasBlacklistKeywords(bio) {
-		var blacklist = [			
+		var blacklist = [
 			'ladyboy',
 			'lady boy',
 			'not a lady',
@@ -12,16 +12,15 @@ function hasBlacklistKeywords(bio) {
 			'chubby',
 			//' lb ',
 		];
-	
-		blacklist.forEach(function(item){
+
+		for (item of blacklist) {
 				if(bio.toLowerCase().indexOf(item) !== -1) {
 					console.log('skipping profile, matched blacklist keyword ' + item);
 					return true;
-				} 
-		});
+				}
+		}
 
 		return false;
-
 }
 
 function hasValidProfile() {

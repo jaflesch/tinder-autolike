@@ -1,5 +1,6 @@
 function checkTinder() {
-	return window.location.href.startsWith("https://tinder.com/app/recs");
+	var base = "https://tinder.com/";
+	return window.location.href.startsWith(base + "app/recs") || window.location.href.startsWith(base + "app/matches");
 }
 
 function trickTinder() {

@@ -1,4 +1,3 @@
-
 function hasBlacklistKeywords(bio) {
 		var blacklist = [
 			'ladyboy',
@@ -50,8 +49,8 @@ function pause(milliseconds) {
 function trickTinder() {
 
 	var infoClassName = 'recCard__info';
-	var dislike = document.getElementsByClassName("recsGamepad__button")[0];
-	var like = document.getElementsByClassName("recsGamepad__button")[2];
+	var dislike = document.querySelector('[aria-label="Nope"]');
+	var like = document.querySelector('[aria-label="Like"]');
 
 	// Open profile bio
 	var info = document.getElementsByClassName(infoClassName)[0];
@@ -87,7 +86,7 @@ function checkOkCupid() {
 }
 function trickOkCupid() {
 	// Press the like button
-	document.getElementsByClassName('cardactions-action--like')[0].click();
+	document.getElementsByClassName('doubletake-like-button')[0].click();
 }
 
 // There is a lot more fun that can be achieved

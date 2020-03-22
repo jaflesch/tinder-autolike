@@ -51,7 +51,7 @@ function trickTinder() {
 
 	var infoClassName = 'recCard__info';
 	var dislike = document.getElementsByClassName("recsGamepad__button")[0];
-	var like = document.getElementsByClassName("recsGamepad__button")[2];
+	var like = document.getElementsByClassName("button Lts($ls-s) Z(0) CenterAlign Mx(a) Cur(p) Tt(u) Bdrs(50%) P(0) Fw($semibold) focus-button-style Bxsh($bxsh-btn) Expand D(b) Bgc(#fff) Trstf(e) Trsdu($normal) Wc($transform) Pe(a) Scale(1.1):h Scale(.9):a")[2];
 
 	// Open profile bio
 	var info = document.getElementsByClassName(infoClassName)[0];

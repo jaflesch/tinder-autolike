@@ -27,7 +27,7 @@ function hasValidProfile() {
 	try {
 		const bioContainer = document.querySelector('.profileCard .profileContent .profileCard__card .BreakWord');
 		if (!bioContainer) return true;
-		const bio = document.querySelector('.profileCard .profileContent .profileCard__card .BreakWord').textContent;
+		const bio = bioContainer.textContent;
 		console.log(bio);
 		return !hasBlacklistKeywords(bio);
 	} catch (e) {

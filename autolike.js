@@ -56,7 +56,7 @@ function trickTinder() {
 	const nbButtons = document.getElementsByClassName("button").length;
 	const buttons = document.getElementsByClassName("button")
 
-	const dislike = document.getElementsByClassName("button")[0];
+	const dislike = nbButtons === 5 ? buttons[1] : buttons[0];
 	const like = nbButtons === 5 ? buttons[3] : buttons[2];
 
 	// Open profile bio

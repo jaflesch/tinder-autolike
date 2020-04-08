@@ -52,7 +52,7 @@ function pause(milliseconds) {
 }
 
 function trickTinder() {
-	const infoClassName = 'recCard__info';
+	const infoClassName = 'focus-button-style';
 	const nbButtons = document.getElementsByClassName("button").length;
 	const buttons = document.getElementsByClassName("button")
 

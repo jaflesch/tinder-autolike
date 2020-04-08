@@ -24,16 +24,16 @@ function hasBlacklistKeywords(bio) {
 }
 
 function hasValidProfile() {
-	const bioClassName = 'profileCard__bio';
 	try {
-		const bio = document.getElementsByClassName(bioClassName)[0].textContent;
+		const bioContainer = document.querySelector('.profileCard .profileContent .profileCard__card .BreakWord');
+		if (!bioContainer) return true;
+		const bio = document.querySelector('.profileCard .profileContent .profileCard__card .BreakWord').textContent;
 		console.log(bio);
 		return !hasBlacklistKeywords(bio);
 	} catch (e) {
 		// console.log(e);
 		return true; // possible empty bio
 	}
-	return false;
 }
 
 function checkTinder() {

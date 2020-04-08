@@ -1,82 +1,91 @@
 
 function hasBlacklistKeywords(bio) {
-		var blacklist = [
-			'ladyboy',
-			'lady boy',
-			'not a lady',
-			'not lady',
-			'not a girl',
-			'not girl',
-			'trans',
-			'shemale',
-			'chubby',
-			//' lb ',
-		];
+	const blacklist = [
+		'ladyboy',
+		'lady boy',
+		'not a lady',
+		'not lady',
+		'not a girl',
+		'not girl',
+		'trans',
+		'shemale',
+		'chubby',
+		//' lb ',
+	];
 
-		for (item of blacklist) {
-				if(bio.toLowerCase().indexOf(item) !== -1) {
-					console.log('skipping profile, matched blacklist keyword ' + item);
-					return true;
-				}
+	for (item of blacklist) {
+		if (bio.toLowerCase().indexOf(item) !== -1) {
+			console.log('skipping profile, matched blacklist keyword ' + item);
+			return true;
 		}
+	}
 
-		return false;
+	return false;
 }
 
 function hasValidProfile() {
-		var bioClassName = 'profileCard__bio';
-		try {
-			var bio = document.getElementsByClassName(bioClassName)[0].textContent;
-			console.log(bio);
-			return !hasBlacklistKeywords(bio);
-		} catch (e) {
-			// console.log(e);
-			return true; // possible empty bio
-		}
-		return false;
+	const bioClassName = 'profileCard__bio';
+	try {
+		const bio = document.getElementsByClassName(bioClassName)[0].textContent;
+		console.log(bio);
+		return !hasBlacklistKeywords(bio);
+	} catch (e) {
+		// console.log(e);
+		return true; // possible empty bio
+	}
+	return false;
 }
 
 function checkTinder() {
-	var base = "https://tinder.com/";
+	const base = "https://tinder.com/";
 	return window.location.href.startsWith(base + "app/recs") || window.location.href.startsWith(base + "app/matches");
+}
+
+function isMatch() {
+	return document.querySelector('a.active');
 }
 
 // prevent async execution
 function pause(milliseconds) {
-	var dt = new Date();
+	const dt = new Date();
 	while ((new Date()) - dt <= milliseconds) { /* Do nothing */ }
 }
 
 function trickTinder() {
-
-	var infoClassName = 'recCard__info';
-	var dislike = document.getElementsByClassName("button")[0];
-	var like = document.getElementsByClassName("button")[3];
+	const infoClassName = 'recCard__info';
+	const dislike = document.getElementsByClassName("button")[0];
+	const like = document.getElementsByClassName("button")[3];
 
 	// Open profile bio
-	var info = document.getElementsByClassName(infoClassName)[0];
-	if(info) {
-			info.click();
+	const info = document.getElementsByClassName(infoClassName)[0];
+	if (info) {
+		info.click();
 	}
 	pause(600);
 
 	// Like or deslike depending on validation
-	if(hasValidProfile()) {
-			like.click();
+	if (hasValidProfile()) {
+		like.click();
+
+		const thereIsMatch = isMatch();
+		if (thereIsMatch) {
+			console.log('------------- IT\'S A MATCH ! -------------');
+			thereIsMatch.click();
+		}
 	} else {
-			dislike.click();
+		dislike.click();
 	}
 
 	// If reached max likes per day then show modal and get it's content...
 	// Check if there is any subscription button...
 	if (document.getElementsByClassName('productButton__subscriptionButton').length > 0) {
 		// We get the counter thing
-		var hms = document.getElementsByClassName('Fz($ml)')[0].textContent;
+		const hms = document.getElementsByClassName('Fz($ml)')[0].textContent;
 		// Split it at the colons
-		var a = hms.split(':');
+		const a = hms.split(':');
 		// Minutes are worth 60 seconds. Hours are worth 60 minutes. 1 second = 1kmilliseconds.
 		// Genius... rocket science...
-		var seconds = (+a[0]) * 60 * 60 + (+a[1]) * 60 + (+a[2])
+		const seconds = (+a[0]) * 60 * 60 + (+a[1]) * 60 + (+a[2])
 
 		return seconds * 1000;
 	}
@@ -102,23 +111,25 @@ function getRandomPeriod() {
 
 (function loopSasori() {
 	// A random period between 500ms and 2secs
-	var randomPeriod = getRandomPeriod();
-	setTimeout(function() {
+	let randomPeriod = getRandomPeriod();
+
+	setTimeout(function () {
 		randomPeriod = undefined;
+
 		if (checkTinder()) {
-			var delay	= trickTinder();
+			const delay = trickTinder();
+
 			if (delay) {
 				console.log('Too many likes for now, have to wait: ' + delay + ' ms');
 				randomPeriod = delay;
 			}
-		}
-		if (checkOkCupid()) {
+		} else if (checkOkCupid()) {
 			trickOkCupid();
 		}
+
 		if (!randomPeriod) {
 			loopSasori();
-		}
-		else {
+		} else {
 			setTimeout(loopSasori, randomPeriod);
 		}
 	}, randomPeriod);

@@ -59,8 +59,8 @@ function trickTinder() {
 	}
 	pause(600);
 
-	// Like or deslike depending on validation
-	if(hasValidProfile()) {
+	// Like or deslike depending on validation + random dislike to trick tinder
+	if(hasValidProfile() && Math.floor(Math.random() * 10) < 8) {
 			like.click();
 	} else {
 			dislike.click();

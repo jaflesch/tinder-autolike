@@ -2,6 +2,8 @@
 function hasBlacklistKeywords(bio) {
 	const blacklist = [
 		'ladyboy',
+		'banci',
+		'bencong',
 		'lady boy',
 		'not a lady',
 		'not lady',
